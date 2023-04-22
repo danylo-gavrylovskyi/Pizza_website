@@ -1,0 +1,107 @@
+.container {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  .company {
+    margin-left: 6%;
+    margin-right: 5%;
+    width: 345px;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    column-gap: 5px;
+    align-items: center;
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    p {
+      margin: 0;
+      color: #7b7b7b;
+    }
+
+    img {
+      width: 80%;
+      object-fit: fill;
+    }
+  }
+
+  .inputZone {
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    height: 48px;
+    width: 27%;
+    display: flex;
+    align-items: center;
+
+    svg {
+      width: 6%;
+      margin-bottom: 2px;
+      margin-right: 4px;
+      margin-left: 15px;
+    }
+
+    input {
+      border: none;
+      font-size: 16px;
+    }
+
+    ::placeholder {
+      font-size: 16px;
+    }
+    :focus {
+      outline: none;
+      font-size: 16px;
+    }
+
+    .clearSearchField {
+      margin-left: 32%;
+      width: 5%;
+      opacity: 0;
+    }
+  }
+
+  .cartButton {
+    margin-left: 24%;
+
+    button {
+      background-color: #fe5f1e;
+      border: 1px solid #fe5f1e;
+      color: white;
+      border-radius: 30px;
+      width: 150px;
+      height: 55px;
+      transition: all 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f24701;
+        border-color: #f24701;
+      }
+
+      div {
+        margin-left: 11%;
+        margin-right: 11%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 16px;
+        font-weight: 700;
+
+        .buttonDelimeter {
+          width: 1px;
+          height: 25px;
+          background-color: rgba(255, 255, 255, 0.25);
+          margin-left: 14px;
+          margin-right: 14px;
+        }
+      }
+    }
+  }
+}
