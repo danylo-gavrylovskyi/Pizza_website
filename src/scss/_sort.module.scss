@@ -1,0 +1,19 @@
+.sortBlock {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10%;
+
+  svg {
+    margin-right: 6px;
+  }
+
+  .bold {
+    font-weight: 700;
+  }
+
+  .sortCriteria {
+    color: #fe5f1e;
+    border-bottom: 1px dashed #fe5f1e;
+    margin-left: 10px;
+  }
+}
