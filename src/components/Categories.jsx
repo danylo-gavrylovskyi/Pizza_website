@@ -2,10 +2,7 @@ import React from 'react';
 
 import styles from '../scss/_categories.module.scss';
 
-export function Categories() {
-  const [activeIndex, setActiveIndex] = React.useState(0);
-  const categories = ['All', 'Meat', 'Vegeterian', 'Grill', 'Spicy', 'Calzone'];
-
+export function Categories({ activeIndex, setActiveIndex, categories = [] }) {
   return (
     <div className={styles.categories}>
       {categories.map((value, index) => (

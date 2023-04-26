@@ -3,20 +3,30 @@ import React from 'react';
 import { Header } from './components/Header';
 import { Categories } from './components/Categories';
 import { Sort } from './components/Sort';
+import { PizzaBlock } from './components/PizzaBlock';
 
-import './App.scss';
+import styles from './App.module.scss';
 
 function App() {
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const categories = ['All', 'Meat', 'Vegeterian', 'Grill', 'Spicy', 'Calzone'];
+
   return (
-    <div className="App">
+    <div className={styles.App}>
       <Header></Header>
-      <Categories></Categories>
+      <Categories
+        activeIndex={activeIndex}
+        setActiveIndex={setActiveIndex}
+        categories={categories}></Categories>
       <Sort></Sort>
-      {/* <p>Category</p>
-      <main>
+      <p className={styles.currentCategory}>{categories[activeIndex]} pizzas</p>
+      <main className={styles.mainGrid}>
+        <PizzaBlock></PizzaBlock>
+        <PizzaBlock></PizzaBlock>
+        <PizzaBlock></PizzaBlock>
         <PizzaBlock></PizzaBlock>
       </main>
-      <Pagination></Pagination> */}
+      {/* <Pagination></Pagination> */}
     </div>
   );
 }

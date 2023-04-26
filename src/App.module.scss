@@ -7,9 +7,7 @@ html {
 }
 
 .App {
-  margin-top: 3%;
-  margin-right: 12%;
-  margin-left: 12%;
+  margin: 3% 12%;
   background-color: white;
   border-radius: 10px;
 
@@ -18,5 +16,18 @@ html {
       margin-right: 3%;
       margin-left: 3%;
     }
+  }
+
+  .currentCategory {
+    margin-left: 6%;
+    font-weight: 800;
+    font-size: 36px;
+  }
+
+  .mainGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 10px;
+    column-gap: 10px;
   }
 }

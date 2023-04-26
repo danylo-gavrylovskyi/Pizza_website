@@ -1,0 +1,109 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 6%;
+  margin-right: 6%;
+
+  img {
+    padding-left: 15px;
+    width: 90%;
+  }
+
+  .pizzaTitle {
+    font-weight: 800;
+    font-size: 20px;
+    margin: 10px 0px;
+  }
+
+  .parameters {
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    width: 90%;
+
+    span {
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid #f3f3f3;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 140%;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+    }
+
+    .active {
+      border-color: white;
+      background-color: white;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      &:hover {
+        border-color: white;
+        background-color: white;
+      }
+    }
+
+    .upperBtns,
+    .footerBtns {
+      display: grid;
+      column-gap: 6px;
+      margin: 0px 3%;
+    }
+
+    .upperBtns {
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 7%;
+      margin-top: 3%;
+    }
+
+    .footerBtns {
+      grid-template-columns: 1fr 1fr 1fr;
+      margin-bottom: 7%;
+    }
+  }
+
+  .footer {
+    margin-top: 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+
+    svg {
+      margin-right: 5px;
+    }
+
+    span {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    button {
+      color: #eb5a1e;
+      border: 1px solid #eb5a1e;
+      background-color: white;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 16px;
+      width: 40%;
+      padding: 5px 0px;
+      transition: all 0.2s;
+
+      &:hover {
+        background-color: #eb5a1e;
+        color: white;
+        svg {
+          path {
+            fill: #ffffff;
+          }
+        }
+      }
+    }
+  }
+}
