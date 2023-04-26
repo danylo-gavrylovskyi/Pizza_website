@@ -15,5 +15,34 @@
     color: #fe5f1e;
     border-bottom: 1px dashed #fe5f1e;
     margin-left: 10px;
+    cursor: pointer;
+    position: relative;
+
+    .criterias {
+      color: black;
+      width: 200px;
+      background-color: white;
+      position: absolute;
+      top: 40px;
+      left: -70px;
+      border-radius: 10px;
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+
+      p {
+        padding: 10px 20px;
+        margin: 0;
+
+        &:hover {
+          background-color: rgba(254, 95, 30, 0.05);
+        }
+      }
+    }
+
+    .choosenCriteria {
+      color: #fe5f1e;
+      font-weight: 700;
+      display: block;
+      background-color: rgba(254, 95, 30, 0.05);
+    }
   }
 }

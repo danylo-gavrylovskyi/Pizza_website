@@ -1,14 +1,21 @@
+import React from 'react';
+
 import styles from '../scss/_categories.module.scss';
 
 export function Categories() {
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const categories = ['All', 'Meat', 'Vegeterian', 'Grill', 'Spicy', 'Calzone'];
+
   return (
     <div className={styles.categories}>
-      <button className={styles.active}>All</button>
-      <button>Meat</button>
-      <button>Vegeterian</button>
-      <button>Grill</button>
-      <button>Spicy</button>
-      <button>Calzone</button>
+      {categories.map((value, index) => (
+        <button
+          key={value}
+          onClick={() => setActiveIndex(index)}
+          className={activeIndex === index ? styles.active : ''}>
+          {value}
+        </button>
+      ))}
     </div>
   );
 }

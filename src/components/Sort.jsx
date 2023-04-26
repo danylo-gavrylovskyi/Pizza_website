@@ -1,6 +1,21 @@
+import React from 'react';
+
 import styles from '../scss/_sort.module.scss';
 
 export function Sort() {
+  const criterias = [
+    'popularity (DESC)',
+    'popularity (ASC)',
+    'price (DESC)',
+    'price (ASC)',
+    'alphabet (DESC)',
+    'alphabet (ASC)',
+  ];
+
+  const [choosenCriteriaIndex, setCriteriaIndex] = React.useState(0);
+
+  const [isSortOpen, setSort] = React.useState(false);
+
   return (
     <div className={styles.sortBlock}>
       <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -9,7 +24,24 @@ export function Sort() {
           fill="#2C2C2C"></path>
       </svg>
       <div className={styles.bold}>Sort by:</div>
-      <div className={styles.sortCriteria}>popularity</div>
+      <div className={styles.sortCriteria}>
+        <span onClick={() => setSort(!isSortOpen)}>{criterias[choosenCriteriaIndex]}</span>
+
+        {isSortOpen && (
+          <div className={styles.criterias}>
+            {criterias.map((value, index) => (
+              <p
+                onClick={() => {
+                  setCriteriaIndex(index);
+                  setSort(!isSortOpen);
+                }}
+                className={choosenCriteriaIndex === index ? styles.choosenCriteria : ''}>
+                {value}
+              </p>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
