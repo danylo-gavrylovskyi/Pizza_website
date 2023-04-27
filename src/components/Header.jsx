@@ -1,6 +1,6 @@
 import styles from '../scss/_header.module.scss';
 
-export function Header() {
+export function Header({ inputValue, setInputValue }) {
   return (
     <div className={styles.container}>
       <div className={styles.company}>
@@ -44,8 +44,12 @@ export function Header() {
             y1="27"
             y2="20.366"></line>
         </svg>
-        <input placeholder="Find pizza..."></input>
+        <input
+          value={inputValue}
+          onChange={(event) => setInputValue(event.target.value)}
+          placeholder="Find pizza..."></input>
         <svg
+          onClick={() => setInputValue('')}
           className={styles.clearSearchField}
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg">

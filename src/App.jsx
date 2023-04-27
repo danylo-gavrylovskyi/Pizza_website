@@ -27,6 +27,11 @@ function App() {
     setIsLoading(true);
   }, []);
 
+  const [inputValue, setInputValue] = React.useState('');
+  const findedItems = items.filter((item) =>
+    item.title.toLowerCase().includes(inputValue.toLowerCase()),
+  );
+
   const [activeIndex, setActiveIndex] = React.useState(0);
   const categories = ['All', 'Meat', 'Vegeterian', 'Grill', 'Spicy', 'Calzone'];
 
@@ -35,8 +40,8 @@ function App() {
 
   const lastItemOnPageInd = currentPage * itemsPerPage;
   const firstItemOnPageInd = lastItemOnPageInd - itemsPerPage;
-  const lastPageNum = Math.ceil(items.length / itemsPerPage);
-  const currentPageItems = items.slice(firstItemOnPageInd, lastItemOnPageInd);
+  const lastPageNum = Math.ceil(findedItems.length / itemsPerPage);
+  const currentPageItems = findedItems.slice(firstItemOnPageInd, lastItemOnPageInd);
 
   const paginate = (pageIndex) => {
     setCurrentPage(pageIndex);
@@ -50,7 +55,7 @@ function App() {
 
   return (
     <div className={styles.App}>
-      <Header></Header>
+      <Header inputValue={inputValue} setInputValue={setInputValue}></Header>
       <Categories
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}
@@ -63,7 +68,7 @@ function App() {
         ))}
       </main>
       <Pagination
-        itemsCount={items.length}
+        itemsCount={findedItems.length}
         itemsPerPage={itemsPerPage}
         paginate={paginate}
         currentPage={currentPage}

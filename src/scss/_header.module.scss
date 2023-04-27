@@ -40,6 +40,8 @@
     width: 27%;
     display: flex;
     align-items: center;
+    position: relative;
+
     @media (max-width: 1400px) {
       & {
         width: 31%;
@@ -47,29 +49,43 @@
     }
 
     svg {
-      width: 6%;
+      width: 5%;
       margin-bottom: 2px;
       margin-right: 4px;
       margin-left: 15px;
     }
 
+    .clearSearchField {
+      position: absolute;
+      right: 5%;
+      top: 32%;
+      width: 5%;
+      opacity: 1;
+      transition: all 0.1s;
+      cursor: pointer;
+
+      &:hover {
+        path {
+          fill: #000000;
+        }
+      }
+    }
+
     input {
       border: none;
       font-size: 16px;
-    }
+      position: absolute;
+      left: 10%;
+      width: 75%;
 
-    ::placeholder {
-      font-size: 16px;
-    }
-    :focus {
-      outline: none;
-      font-size: 16px;
-    }
+      &:focus {
+        outline: none;
+        font-size: 16px;
+      }
 
-    .clearSearchField {
-      margin-left: 32%;
-      width: 5%;
-      opacity: 0;
+      ::placeholder {
+        font-size: 16px;
+      }
     }
   }
 
