@@ -1,0 +1,39 @@
+.pagination {
+  margin-left: 5%;
+  margin-top: 2%;
+  display: flex;
+
+  button {
+    border: 1px solid #fe5f1e;
+    border-radius: 30px;
+    background-color: white;
+    color: #fe5f1e;
+    padding: 1% 1.5%;
+    margin: 2% 1% 2% 0;
+    font-size: 16px;
+    cursor: pointer;
+    width: 4%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      color: white;
+      background-color: #fe5f1e;
+      svg {
+        polyline {
+          stroke: #ffffff;
+        }
+      }
+    }
+  }
+
+  .active {
+    color: white;
+    background-color: #fe5f1e;
+  }
+
+  svg {
+    height: 100%;
+  }
+}
