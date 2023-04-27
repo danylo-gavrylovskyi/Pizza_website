@@ -1,26 +1,72 @@
+import React from 'react';
+
 import styles from '../scss/_pizzablock.module.scss';
 
-export function PizzaBlock({ title = 'Paperoni' }) {
+export function PizzaBlock({ title, imageUrl, price, types, sizes }) {
+  const [activeTypeIndex, setTypeIndex] = React.useState(0);
+  const setActiveTypeIndex = (index) => {
+    if (types.includes(index)) {
+      setTypeIndex(index);
+    }
+  };
+
+  const [activeSizeIndex, setSizeIndex] = React.useState(26);
+  const setActiveSizeIndex = (index) => {
+    if (sizes.includes(index)) {
+      setSizeIndex(index);
+    }
+  };
+
   return (
     <section className={styles.container}>
-      <img alt="cheeseburger-pizza" src="img/cheeseburger-pizza.png"></img>
+      <img alt={title} src={imageUrl}></img>
 
       <p className={styles.pizzaTitle}>{title}</p>
 
       <div className={styles.parameters}>
         <section className={styles.upperBtns}>
-          <span className={styles.active}>thin</span>
-          <span>traditional</span>
+          <span
+            onClick={() => setActiveTypeIndex(0)}
+            className={`${types.includes(0) ? '' : styles.unavailable} ${
+              activeTypeIndex === 0 ? styles.active : ''
+            }`}>
+            thin
+          </span>
+          <span
+            onClick={() => setActiveTypeIndex(1)}
+            className={`${types.includes(1) ? '' : styles.unavailable} ${
+              activeTypeIndex === 1 ? styles.active : ''
+            }`}>
+            traditional
+          </span>
         </section>
         <section className={styles.footerBtns}>
-          <span className={styles.active}>26 cm.</span>
-          <span>30 cm.</span>
-          <span>40 cm.</span>
+          <span
+            onClick={() => setActiveSizeIndex(26)}
+            className={`${sizes.includes(26) ? '' : styles.unavailable} ${
+              activeSizeIndex === 26 ? styles.active : ''
+            }`}>
+            26 cm.
+          </span>
+          <span
+            onClick={() => setActiveSizeIndex(30)}
+            className={`${sizes.includes(30) ? '' : styles.unavailable} ${
+              activeSizeIndex === 30 ? styles.active : ''
+            }`}>
+            30 cm.
+          </span>
+          <span
+            onClick={() => setActiveSizeIndex(40)}
+            className={`${sizes.includes(40) ? '' : styles.unavailable} ${
+              activeSizeIndex === 40 ? styles.active : ''
+            }`}>
+            40 cm.
+          </span>
         </section>
       </div>
 
       <div className={styles.footer}>
-        <span>from 20 €</span>
+        <span>from {price} €</span>
         <button>
           <svg
             width="12"

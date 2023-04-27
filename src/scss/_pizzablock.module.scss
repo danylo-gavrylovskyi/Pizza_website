@@ -37,7 +37,7 @@
       }
     }
 
-    .active {
+    .active:not(.unavailable) {
       border-color: white;
       background-color: white;
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -63,6 +63,15 @@
     .footerBtns {
       grid-template-columns: 1fr 1fr 1fr;
       margin-bottom: 7%;
+    }
+
+    .unavailable {
+      color: rgba(0, 0, 0, 0.1);
+      cursor: default;
+      &:hover {
+        background-color: #f3f3f3;
+        border-color: #f3f3f3;
+      }
     }
   }
 
@@ -92,6 +101,7 @@
       width: 40%;
       padding: 5px 0px;
       transition: all 0.2s;
+      cursor: pointer;
 
       &:hover {
         background-color: #eb5a1e;
