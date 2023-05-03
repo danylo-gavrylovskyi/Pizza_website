@@ -31,6 +31,7 @@ export function Sort() {
           <div className={styles.criterias}>
             {criterias.map((value, index) => (
               <p
+                key={index}
                 onClick={() => {
                   setCriteriaIndex(index);
                   setSort(!isSortOpen);

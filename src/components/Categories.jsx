@@ -1,15 +1,21 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { setActiveCategoryIndex } from '../slices/categorySlice';
 
 import styles from '../scss/_categories.module.scss';
 
-export function Categories({ activeIndex, setActiveIndex, categories = [] }) {
+export function Categories({ categories = [] }) {
+  const activeCategoryIndex = useSelector((state) => state.category.value);
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.categories}>
       {categories.map((value, index) => (
         <button
           key={value}
-          onClick={() => setActiveIndex(index)}
-          className={activeIndex === index ? styles.active : ''}>
+          onClick={() => dispatch(setActiveCategoryIndex(index))}
+          className={activeCategoryIndex === index ? styles.active : ''}>
           {value}
         </button>
       ))}

@@ -1,12 +1,15 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
+import { useSelector } from 'react-redux';
 
 import { PizzaBlock } from '../components/PizzaBlock';
 import { Pagination } from '../components/Pagination';
 
 import styles from '../App.module.scss';
 
-export function Home({ findedItems, categories, activeIndex, isLoading }) {
+export function Home({ findedItems, categories, isLoading }) {
+  const activeCategoryIndex = useSelector((state) => state.category.value);
+
   const [currentPage, setCurrentPage] = React.useState(1);
   const itemsPerPage = 8;
 
@@ -27,7 +30,7 @@ export function Home({ findedItems, categories, activeIndex, isLoading }) {
 
   return (
     <>
-      <p className={styles.currentCategory}>{categories[activeIndex]} pizzas</p>
+      <p className={styles.currentCategory}>{categories[activeCategoryIndex]} pizzas</p>
       <main className={styles.mainGrid}>
         {isLoading
           ? [...Array(8)].map((element, index) => (
