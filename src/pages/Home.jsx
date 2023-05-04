@@ -8,7 +8,7 @@ import { Pagination } from '../components/Pagination';
 import styles from '../App.module.scss';
 
 export function Home({ findedItems, categories, isLoading }) {
-  const activeCategoryIndex = useSelector((state) => state.category.value);
+  const activeCategoryIndex = useSelector((state) => state.filter.activeCategoryIndex);
 
   const [currentPage, setCurrentPage] = React.useState(1);
   const itemsPerPage = 8;

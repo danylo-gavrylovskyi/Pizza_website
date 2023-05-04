@@ -1,4 +1,7 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { setCriteriaIndex, setCriteriaName } from '../slices/filterSlice';
 
 import styles from '../scss/_sort.module.scss';
 
@@ -12,7 +15,10 @@ export function Sort() {
     'alphabet (ASC)',
   ];
 
-  const [choosenCriteriaIndex, setCriteriaIndex] = React.useState(0);
+  const backendCriterias = ['rating', 'rating', 'price', 'price', 'title', 'title'];
+
+  const choosenCriteriaIndex = useSelector((state) => state.filter.sortCriteriaIndex);
+  const dispatch = useDispatch();
 
   const [isSortOpen, setSort] = React.useState(false);
 
@@ -33,7 +39,8 @@ export function Sort() {
               <p
                 key={index}
                 onClick={() => {
-                  setCriteriaIndex(index);
+                  dispatch(setCriteriaIndex(index));
+                  dispatch(setCriteriaName(backendCriterias[index]));
                   setSort(!isSortOpen);
                 }}
                 className={choosenCriteriaIndex === index ? styles.choosenCriteria : ''}>

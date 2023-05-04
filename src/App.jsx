@@ -11,7 +11,9 @@ import styles from './App.module.scss';
 import { useSelector } from 'react-redux';
 
 function App() {
-  const activeCategoryIndex = useSelector((state) => state.category.value);
+  const { activeCategoryIndex, sortCriteriaIndex, sortCriteriaName } = useSelector(
+    (state) => state.filter,
+  );
 
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -22,9 +24,9 @@ function App() {
         setIsLoading(true);
         console.log(activeCategoryIndex);
         const { data } = await axios.get(
-          `https://644a85e179279846dceb1b8f.mockapi.io/pizzas${
-            activeCategoryIndex > 0 ? `?category=${activeCategoryIndex}` : ''
-          }`,
+          `https://644a85e179279846dceb1b8f.mockapi.io/pizzas?${
+            activeCategoryIndex > 0 ? `category=${activeCategoryIndex}` : ''
+          }&sortBy=${sortCriteriaName}&order=${sortCriteriaIndex % 2 === 0 ? 'desc' : 'asc'}`,
         );
         setItems(data);
         setIsLoading(false);
@@ -33,7 +35,7 @@ function App() {
         alert('Error when getting pizzas on first page load');
       }
     })();
-  }, [activeCategoryIndex]);
+  }, [activeCategoryIndex, sortCriteriaIndex, sortCriteriaName]);
 
   const [inputValue, setInputValue] = React.useState('');
   const findedItems = items.filter((item) =>
