@@ -1,6 +1,11 @@
 import styles from '../scss/_cart.module.scss';
+import { EmptyCart } from './EmptyCart';
 
-export function Cart({ cartItems = [] }) {
+export function Cart({ cartItems }) {
+  if (!cartItems) {
+    return <EmptyCart></EmptyCart>;
+  }
+
   return (
     <div className={styles.container}>
       <header>
