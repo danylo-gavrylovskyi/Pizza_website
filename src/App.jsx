@@ -1,14 +1,13 @@
 import React from 'react';
 import axios from 'axios';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { Header } from './components/Header';
-import { Categories } from './components/Categories';
-import { Sort } from './components/Sort';
 import { Home } from './pages/Home';
+import { Cart } from './pages/Cart';
 
 import styles from './App.module.scss';
-import { useSelector } from 'react-redux';
 
 function App() {
   const { activeCategoryIndex, sortCriteriaIndex, sortCriteriaName } = useSelector(
@@ -22,7 +21,6 @@ function App() {
     (async () => {
       try {
         setIsLoading(true);
-        console.log(activeCategoryIndex);
         const { data } = await axios.get(
           `https://644a85e179279846dceb1b8f.mockapi.io/pizzas?${
             activeCategoryIndex > 0 ? `category=${activeCategoryIndex}` : ''
@@ -47,8 +45,6 @@ function App() {
   return (
     <div className={styles.App}>
       <Header inputValue={inputValue} setInputValue={setInputValue}></Header>
-      <Categories categories={categories}></Categories>
-      <Sort></Sort>
       <Routes>
         <Route
           path="/"
@@ -56,6 +52,8 @@ function App() {
           element={
             <Home findedItems={findedItems} categories={categories} isLoading={isLoading} />
           }></Route>
+
+        <Route path="/cart" exact element={<Cart />}></Route>
       </Routes>
     </div>
   );

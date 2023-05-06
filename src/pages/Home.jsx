@@ -4,8 +4,10 @@ import { useSelector } from 'react-redux';
 
 import { PizzaBlock } from '../components/PizzaBlock';
 import { Pagination } from '../components/Pagination';
+import { Categories } from '../components/Categories';
+import { Sort } from '../components/Sort';
 
-import styles from '../App.module.scss';
+import styles from '../scss/_home.module.scss';
 
 export function Home({ findedItems, categories, isLoading }) {
   const activeCategoryIndex = useSelector((state) => state.filter.activeCategoryIndex);
@@ -30,6 +32,8 @@ export function Home({ findedItems, categories, isLoading }) {
 
   return (
     <>
+      <Categories categories={categories}></Categories>
+      <Sort></Sort>
       <p className={styles.currentCategory}>{categories[activeCategoryIndex]} pizzas</p>
       <main className={styles.mainGrid}>
         {isLoading
