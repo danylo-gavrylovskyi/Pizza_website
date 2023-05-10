@@ -1,8 +1,24 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
+import debounce from 'lodash.debounce';
 
 import styles from '../scss/_header.module.scss';
 
-export function Header({ inputValue, setInputValue }) {
+export function Header({ setInputValue }) {
+  const [searchValue, setSearchValue] = React.useState('');
+
+  const searchDebounce = React.useCallback(
+    debounce((value) => {
+      setInputValue(value);
+    }, 500),
+    [],
+  );
+
+  const onSearchChange = (event) => {
+    setSearchValue(event.target.value);
+    searchDebounce(event.target.value);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.company}>
@@ -51,11 +67,14 @@ export function Header({ inputValue, setInputValue }) {
             y2="20.366"></line>
         </svg>
         <input
-          value={inputValue}
-          onChange={(event) => setInputValue(event.target.value)}
+          value={searchValue}
+          onChange={(event) => onSearchChange(event)}
           placeholder="Find pizza..."></input>
         <svg
-          onClick={() => setInputValue('')}
+          onClick={() => {
+            setInputValue('');
+            setSearchValue('');
+          }}
           className={styles.clearSearchField}
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg">
