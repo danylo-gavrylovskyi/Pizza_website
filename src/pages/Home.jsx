@@ -9,8 +9,9 @@ import { Sort } from '../components/Sort';
 
 import styles from '../scss/_home.module.scss';
 
-export function Home({ findedItems, categories, isLoading }) {
+export function Home({ findedItems, categories }) {
   const activeCategoryIndex = useSelector((state) => state.filter.activeCategoryIndex);
+  const status = useSelector((state) => state.businessLogic.status);
 
   const [currentPage, setCurrentPage] = React.useState(1);
   const itemsPerPage = 8;
@@ -36,7 +37,7 @@ export function Home({ findedItems, categories, isLoading }) {
       <Sort></Sort>
       <p className={styles.currentCategory}>{categories[activeCategoryIndex]} pizzas</p>
       <main className={styles.mainGrid}>
-        {isLoading
+        {status === 'loading'
           ? [...Array(8)].map((element, index) => (
               <ContentLoader
                 key={index}

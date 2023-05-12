@@ -1,7 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import { Routes, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { pizzasFetch } from './slices/businessLogicSlice';
 
 import { Header } from './components/Header';
 import { Home } from './pages/Home';
@@ -13,26 +14,11 @@ function App() {
   const { activeCategoryIndex, sortCriteriaIndex, sortCriteriaName } = useSelector(
     (state) => state.filter,
   );
-
-  const [items, setItems] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const { items } = useSelector((state) => state.businessLogic);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    (async () => {
-      try {
-        setIsLoading(true);
-        const { data } = await axios.get(
-          `https://644a85e179279846dceb1b8f.mockapi.io/pizzas?${
-            activeCategoryIndex > 0 ? `category=${activeCategoryIndex}` : ''
-          }&sortBy=${sortCriteriaName}&order=${sortCriteriaIndex % 2 === 0 ? 'desc' : 'asc'}`,
-        );
-        setItems(data);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error);
-        alert('Error when getting pizzas on first page load');
-      }
-    })();
+    dispatch(pizzasFetch({ activeCategoryIndex, sortCriteriaIndex, sortCriteriaName }));
   }, [activeCategoryIndex, sortCriteriaIndex, sortCriteriaName]);
 
   const [inputValue, setInputValue] = React.useState('');
@@ -49,9 +35,7 @@ function App() {
         <Route
           path="/"
           exact
-          element={
-            <Home findedItems={findedItems} categories={categories} isLoading={isLoading} />
-          }></Route>
+          element={<Home findedItems={findedItems} categories={categories} />}></Route>
 
         <Route path="/cart" exact element={<Cart />}></Route>
       </Routes>
