@@ -15,6 +15,7 @@ function App() {
     (state) => state.filter,
   );
   const { items } = useSelector((state) => state.businessLogic);
+  const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -28,16 +29,26 @@ function App() {
 
   const categories = ['All', 'Meat', 'Vegeterian', 'Grill', 'Spicy', 'Calzone'];
 
+  const orderTotal = cartItems.reduce((sum, item) => sum + item.price * item.count, 0);
+  const quantity = cartItems.reduce((sum, item) => sum + item.count, 0);
+
   return (
     <div className={styles.App}>
-      <Header inputValue={inputValue} setInputValue={setInputValue}></Header>
+      <Header
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        orderTotal={orderTotal}
+        quantity={quantity}></Header>
       <Routes>
         <Route
           path="/"
           exact
           element={<Home findedItems={findedItems} categories={categories} />}></Route>
 
-        <Route path="/cart" exact element={<Cart />}></Route>
+        <Route
+          path="/cart"
+          exact
+          element={<Cart orderTotal={orderTotal} quantity={quantity} />}></Route>
       </Routes>
     </div>
   );

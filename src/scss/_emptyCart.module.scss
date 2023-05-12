@@ -1,3 +1,5 @@
+@import 'router-link';
+
 .container {
   display: flex;
   flex-direction: column;
@@ -26,7 +28,7 @@
   }
 
   .backBtn {
-    width: 20%;
+    width: 15vw;
     height: 40px;
     border: 1px solid #282828;
     background-color: #282828;

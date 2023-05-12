@@ -1,10 +1,21 @@
-import styles from '../scss/_cart.module.scss';
-import { EmptyCart } from './EmptyCart';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-export function Cart({ cartItems }) {
-  if (!cartItems) {
+import { addToCart, removeFromCart, removeOneUnit, clearCart } from '../slices/cartSlice';
+
+import { EmptyCart } from '../pages/EmptyCart';
+
+import styles from '../scss/_cart.module.scss';
+
+export function Cart({ orderTotal, quantity }) {
+  const { cartItems } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  if (cartItems.length === 0) {
     return <EmptyCart></EmptyCart>;
   }
+
+  const types = ['thin', 'traditional'];
 
   return (
     <div className={styles.container}>
@@ -40,7 +51,7 @@ export function Cart({ cartItems }) {
           </svg>
           <span>Cart</span>
         </div>
-        <div className={styles.clearCart}>
+        <div onClick={() => dispatch(clearCart())} className={styles.clearCart}>
           <svg
             width="20"
             height="20"
@@ -82,17 +93,19 @@ export function Cart({ cartItems }) {
 
       <main>
         {cartItems.map((item) => (
-          <section key={item.title}>
+          <section key={`${item.title + item.activeTypeIndex + item.activeSizeIndex}`}>
             <div className={styles.item}>
               <img alt={item.title} src={item.imageUrl}></img>
               <div>
                 <p className={styles.title}>{item.title}</p>
-                <p className={styles.properties}>properties, cm</p>
+                <p className={styles.properties}>
+                  {types[item.activeTypeIndex]}, {item.activeSizeIndex} cm
+                </p>
               </div>
             </div>
 
             <div className={styles.counter}>
-              <button>
+              <button onClick={() => dispatch(removeOneUnit(item))}>
                 <svg
                   width="10"
                   height="2"
@@ -105,8 +118,8 @@ export function Cart({ cartItems }) {
                   />
                 </svg>
               </button>
-              <span>2</span>
-              <button>
+              <span>{item.count}</span>
+              <button onClick={() => dispatch(addToCart(item))}>
                 <svg
                   width="10"
                   height="10"
@@ -121,9 +134,9 @@ export function Cart({ cartItems }) {
               </button>
             </div>
 
-            <div className={styles.price}>{item.price}</div>
+            <div className={styles.price}>{item.price} €</div>
 
-            <button className={styles.deleteItem}>
+            <button onClick={() => dispatch(removeFromCart(item))} className={styles.deleteItem}>
               <svg
                 width="10"
                 height="9"
@@ -142,30 +155,32 @@ export function Cart({ cartItems }) {
         <footer>
           <div>
             <p>
-              Quantity: <span className={styles.itemsCount}>3 units</span>
+              Quantity: <span className={styles.itemsCount}>{quantity} units</span>
             </p>
-            <button className={styles.backBtn}>
-              <svg
-                width="8"
-                height="14"
-                viewBox="0 0 8 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M7 13L1 6.93015L6.86175 1"
-                  stroke="#D3D3D3"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              Back
-            </button>
+            <Link className={styles.routerLink} to="/">
+              <button className={styles.backBtn}>
+                <svg
+                  width="8"
+                  height="14"
+                  viewBox="0 0 8 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M7 13L1 6.93015L6.86175 1"
+                    stroke="#D3D3D3"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                Back
+              </button>
+            </Link>
           </div>
 
           <div>
             <p>
-              Order Total: <span className={styles.orderCost}>20 €</span>
+              Order Total: <span className={styles.orderCost}>{orderTotal} €</span>
             </p>
             <button className={styles.orderBtn}>Checkout</button>
           </div>

@@ -57,7 +57,9 @@ export function Home({ findedItems, categories }) {
                 <rect x="140" y="367" rx="30" ry="30" width="97" height="33" />
               </ContentLoader>
             ))
-          : currentPageItems.map((item) => <PizzaBlock key={item.title} {...item}></PizzaBlock>)}
+          : currentPageItems.map((item) => (
+              <PizzaBlock key={item.title} {...item} item={item}></PizzaBlock>
+            ))}
       </main>
       <Pagination
         itemsCount={findedItems.length}

@@ -1,8 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+
+import { addToCart } from '../slices/cartSlice';
 
 import styles from '../scss/_pizzablock.module.scss';
 
-export function PizzaBlock({ title, imageUrl, price, types, sizes }) {
+export function PizzaBlock({ title, imageUrl, price, types, sizes, item }) {
+  const dispatch = useDispatch();
+
   const [activeTypeIndex, setTypeIndex] = React.useState(0);
   const setActiveTypeIndex = (index) => {
     if (types.includes(index)) {
@@ -15,6 +20,13 @@ export function PizzaBlock({ title, imageUrl, price, types, sizes }) {
     if (sizes.includes(index)) {
       setSizeIndex(index);
     }
+  };
+
+  item = {
+    ...item,
+    activeTypeIndex,
+    activeSizeIndex,
+    props: `${item.id + activeTypeIndex + activeSizeIndex}`,
   };
 
   return (
@@ -67,7 +79,7 @@ export function PizzaBlock({ title, imageUrl, price, types, sizes }) {
 
       <div className={styles.footer}>
         <span>from {price} €</span>
-        <button>
+        <button onClick={() => dispatch(addToCart(item))}>
           <svg
             width="12"
             height="12"

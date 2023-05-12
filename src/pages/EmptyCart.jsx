@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import styles from '../scss/_emptyCart.module.scss';
 
 export function EmptyCart() {
@@ -149,7 +151,9 @@ export function EmptyCart() {
         />
       </svg>
 
-      <button className={styles.backBtn}>Back</button>
+      <Link to="/" className={styles.routerLink}>
+        <button className={styles.backBtn}>Back</button>
+      </Link>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce';
 
 import styles from '../scss/_header.module.scss';
 
-export function Header({ setInputValue }) {
+export function Header({ setInputValue, orderTotal, quantity }) {
   const [searchValue, setSearchValue] = React.useState('');
 
   const searchDebounce = React.useCallback(
@@ -88,7 +88,7 @@ export function Header({ setInputValue }) {
         <Link to="/cart">
           <button>
             <div>
-              30€<div className={styles.buttonDelimeter}></div>
+              {orderTotal} €<div className={styles.buttonDelimeter}></div>
               <svg
                 width="18"
                 height="18"
@@ -114,7 +114,7 @@ export function Header({ setInputValue }) {
                   strokeLinecap="round"
                   strokeLinejoin="round"></path>
               </svg>
-              3
+              {quantity}
             </div>
           </button>
         </Link>

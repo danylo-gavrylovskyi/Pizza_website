@@ -1,3 +1,5 @@
+@import 'router-link';
+
 .container {
   padding-top: 1.5%;
   padding-bottom: 1.5%;
@@ -5,10 +7,6 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-
-  .routerLink {
-    all: unset;
-  }
 
   .company {
     margin-left: 6%;

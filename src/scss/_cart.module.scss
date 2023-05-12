@@ -1,3 +1,5 @@
+@import 'router-link';
+
 .container {
   padding: 5% 20%;
 
@@ -14,7 +16,7 @@
       align-items: center;
       svg {
         margin-right: 2%;
-        width: 3%;
+        width: 4%;
       }
     }
 
@@ -25,7 +27,7 @@
       display: flex;
       align-items: center;
       cursor: pointer;
-      width: 11%;
+      width: 15%;
       svg {
         margin-right: 5%;
       }
@@ -43,7 +45,7 @@
       padding: 2% 0;
 
       .item {
-        width: 30%;
+        width: 35%;
         display: flex;
         align-items: center;
         .title {
@@ -103,7 +105,7 @@
         border: 2px solid #d7d7d7;
         border-radius: 20px;
         background-color: white;
-        width: 4.7%;
+        width: 5.7%;
         height: 40px;
         transition: all 0.1s;
         cursor: pointer;
