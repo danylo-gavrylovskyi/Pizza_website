@@ -1,0 +1,112 @@
+[
+  {
+    "id": "0",
+    "imageUrl": "/img/Pepperoni-Fresh-with-pepper.jpeg",
+    "title": "Pepperoni with pepper",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 10,
+    "category": 4,
+    "rating": 4,
+    "ingredients": "Filling: pepperoni, green chili pepper, mozzarella cheese, Italian herbs, tomato sauce. Basis: craft flour, wheat flour, leaven, olive oil, sugar, salt."
+  },
+  {
+    "id": "1",
+    "imageUrl": "/img/cheesy.jpg",
+    "title": "Cheesy",
+    "types": [0],
+    "sizes": [26, 40],
+    "price": 4,
+    "category": 2,
+    "rating": 6,
+    "ingredients": "Filling: mozzarella cheese, Dor Blue cheese, cheddar slice cheese, feta cheese, cream sauce. Basis: сraft flour, wheat flour, leaven, olive oil, sugar, salt."
+  },
+  {
+    "id": "2",
+    "imageUrl": "/img/barbecue-chicken.jpg",
+    "title": "Barbecue chicken",
+    "types": [0],
+    "sizes": [26, 40],
+    "price": 4.5,
+    "category": 3,
+    "rating": 4,
+    "ingredients": "Filling: chicken breast, mozzarella cheese, barbeque souce, red onion, arugula, paprika, bechamel sauce. Basis: craft flour, wheat flour, leaven, olive oil, sugar, salt."
+  },
+  {
+    "id": "3",
+    "imageUrl": "/img/sweet-and-sour-chicken.jpg",
+    "title": "Sweet and sour chicken",
+    "types": [1],
+    "sizes": [26, 30, 40],
+    "price": 4.5,
+    "category": 1,
+    "rating": 2,
+    "ingredients": "Filling: chicken breast, mozzarella cheese, sweet and sour souce, bechamel sauce. Basis: craft flour, wheat flour, leaven, olive oil, sugar, salt."
+  },
+  {
+    "id": "4",
+    "imageUrl": "/img/cheeseburger-pizza.png",
+    "title": "Cheeseburger-pizza",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 6,
+    "category": 3,
+    "rating": 8,
+    "ingredients": "Filling: dill pickles, roma tomatoes, bacon, ground beef, cheddar and mozzarella cheese. Basis: craft flour, wheat flour, leaven, olive oil, sugar, salt."
+  },
+  {
+    "id": "5",
+    "imageUrl": "/img/crazy-pepperoni.jpg",
+    "title": "Crazy pepperoni",
+    "types": [0],
+    "sizes": [30, 40],
+    "price": 8,
+    "category": 4,
+    "rating": 2,
+    "ingredients": "Filling: pepperoni, sweet and sour souce, mozzarella cheese, Italian herbs, tomato sauce. Basis: craft flour, wheat flour, leaven, olive oil, sugar, salt."
+  },
+  {
+    "id": "6",
+    "imageUrl": "/img/pepperoni.jpg",
+    "title": "Pepperoni",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 7,
+    "category": 4,
+    "rating": 9,
+    "ingredients": "Filling: pepperoni, mozzarella cheese, Italian herbs, tomato sauce. Basis: craft flour, wheat flour, leaven, olive oil, sugar, salt."
+  },
+  {
+    "id": "7",
+    "imageUrl": "/img/margarita-pizza.jpg",
+    "title": "Margarita pizza",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 5,
+    "category": 2,
+    "rating": 10,
+    "ingredients": "Filling: mozzarella cheese, tomatoes, Italian herbs, pesto sauce, tomato sauce. Basis: сraft flour, wheat flour, leaven, olive oil, sugar, salt."
+  },
+  {
+    "id": "8",
+    "imageUrl": "/img/four-season.jpg",
+    "title": "Four season",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 4.5,
+    "category": 1,
+    "rating": 10,
+    "ingredients": "Filling: mushrooms, salami, cooked ham, bell pepper, mozzarella cheese, tomato sauce. Basis: сraft flour, wheat flour, leaven, olive oil, sugar, salt."
+  },
+  {
+    "id": "9",
+    "imageUrl": "/img/vegetables-and-mushrooms.jpg",
+    "title": "Vegetables and mushrooms",
+    "types": [0, 1],
+    "sizes": [26, 30, 40],
+    "price": 5,
+    "category": 2,
+    "rating": 7,
+    "ingredients": "Filling: tomato sauce, mozzarella cheese, bell pepper, tomato, corn, mushrooms, onion, olives, chili pepper, feta cheese, pesto sauce, dry oregano. Basis: сraft flour, wheat flour, leaven, olive oil, sugar, salt."
+  }
+]

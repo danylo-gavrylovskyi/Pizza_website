@@ -10,13 +10,13 @@ export function PizzaBlock({ title, imageUrl, price, types, sizes, item }) {
   const dispatch = useDispatch();
 
   const [activeTypeIndex, setTypeIndex] = React.useState(0);
+  const [activeSizeIndex, setSizeIndex] = React.useState(26);
   const setActiveTypeIndex = (index) => {
     if (types.includes(index)) {
       setTypeIndex(index);
     }
   };
 
-  const [activeSizeIndex, setSizeIndex] = React.useState(26);
   const setActiveSizeIndex = (index) => {
     if (sizes.includes(index)) {
       setSizeIndex(index);

@@ -29,7 +29,7 @@ export function Header({ orderTotal, quantity }) {
       <div className={styles.company}>
         <div>
           <Link className={styles.routerLink} to="/">
-            <img alt="pizza-logo" src="img/icons/pizza-logo.svg"></img>
+            <img alt="pizza-logo" src="/img/icons/pizza-logo.svg"></img>
           </Link>
         </div>
         <div>
@@ -77,7 +77,7 @@ export function Header({ orderTotal, quantity }) {
           placeholder="Find pizza..."></input>
         <svg
           onClick={() => {
-            setInputValue('');
+            dispatch(setInputValue(''));
             setSearchValue('');
           }}
           className={styles.clearSearchField}
