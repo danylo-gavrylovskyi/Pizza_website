@@ -4,6 +4,7 @@ const initialState = {
   activeCategoryIndex: 0,
   sortCriteriaIndex: 0,
   sortCriteriaName: 'rating',
+  inputValue: '',
 };
 
 const filterSlice = createSlice({
@@ -19,9 +20,19 @@ const filterSlice = createSlice({
     setCriteriaName(state, action) {
       state.sortCriteriaName = action.payload;
     },
+
+    setInputValue(state, action) {
+      state.inputValue = action.payload;
+    },
   },
 });
 
-export const { setActiveCategoryIndex, setCriteriaIndex, setCriteriaName } = filterSlice.actions;
+export const {
+  setActiveCategoryIndex,
+  setCriteriaIndex,
+  setCriteriaName,
+  setInputValue,
+  inputValue,
+} = filterSlice.actions;
 
 export default filterSlice.reducer;

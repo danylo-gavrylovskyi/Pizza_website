@@ -7,11 +7,12 @@ import { pizzasFetch } from './slices/businessLogicSlice';
 import { Header } from './components/Header';
 import { Home } from './pages/Home';
 import { Cart } from './pages/Cart';
+import { PizzaCard } from './pages/PizzaCard';
 
 import styles from './App.module.scss';
 
 function App() {
-  const { activeCategoryIndex, sortCriteriaIndex, sortCriteriaName } = useSelector(
+  const { activeCategoryIndex, sortCriteriaIndex, sortCriteriaName, inputValue } = useSelector(
     (state) => state.filter,
   );
   const { items } = useSelector((state) => state.businessLogic);
@@ -22,7 +23,6 @@ function App() {
     dispatch(pizzasFetch({ activeCategoryIndex, sortCriteriaIndex, sortCriteriaName }));
   }, [activeCategoryIndex, sortCriteriaIndex, sortCriteriaName]);
 
-  const [inputValue, setInputValue] = React.useState('');
   const findedItems = items.filter((item) =>
     item.title.toLowerCase().includes(inputValue.toLowerCase()),
   );
@@ -34,11 +34,7 @@ function App() {
 
   return (
     <div className={styles.App}>
-      <Header
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-        orderTotal={orderTotal}
-        quantity={quantity}></Header>
+      <Header orderTotal={orderTotal} quantity={quantity}></Header>
       <Routes>
         <Route
           path="/"
@@ -49,6 +45,8 @@ function App() {
           path="/cart"
           exact
           element={<Cart orderTotal={orderTotal} quantity={quantity} />}></Route>
+
+        <Route path="/pizza/:id" element={<PizzaCard />}></Route>
       </Routes>
     </div>
   );

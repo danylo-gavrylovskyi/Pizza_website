@@ -1,15 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import debounce from 'lodash.debounce';
+import { useDispatch } from 'react-redux';
+
+import { setInputValue } from '../slices/filterSlice';
 
 import styles from '../scss/_header.module.scss';
 
-export function Header({ setInputValue, orderTotal, quantity }) {
+export function Header({ orderTotal, quantity }) {
   const [searchValue, setSearchValue] = React.useState('');
+
+  const dispatch = useDispatch();
 
   const searchDebounce = React.useCallback(
     debounce((value) => {
-      setInputValue(value);
+      dispatch(setInputValue(value));
     }, 500),
     [],
   );

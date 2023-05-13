@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { addToCart } from '../slices/cartSlice';
 
@@ -31,9 +32,10 @@ export function PizzaBlock({ title, imageUrl, price, types, sizes, item }) {
 
   return (
     <section className={styles.container}>
-      <img alt={title} src={imageUrl}></img>
-
-      <p className={styles.pizzaTitle}>{title}</p>
+      <Link className={styles.routerLink} to={`/pizza/${item.id}`}>
+        <img alt={title} src={imageUrl}></img>
+        <p className={styles.pizzaTitle}>{title}</p>
+      </Link>
 
       <div className={styles.parameters}>
         <section className={styles.upperBtns}>
