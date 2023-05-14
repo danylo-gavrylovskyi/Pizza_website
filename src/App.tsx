@@ -24,7 +24,7 @@ const App: React.FC = () => {
 
   React.useEffect(() => {
     dispatch(pizzasFetch({ activeCategoryIndex, sortCriteriaIndex, sortCriteriaName }));
-  }, [activeCategoryIndex, sortCriteriaIndex, sortCriteriaName]);
+  }, [activeCategoryIndex, sortCriteriaIndex, sortCriteriaName, dispatch]);
 
   const findedItems = items.filter((item: Item) =>
     item.title.toLowerCase().includes(inputValue.toLowerCase()),

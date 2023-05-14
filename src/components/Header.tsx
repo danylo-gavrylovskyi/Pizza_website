@@ -14,10 +14,11 @@ export const Header: React.FC<Record<string, number>> = ({ orderTotal, quantity 
   const dispatch = useDispatch();
 
   const searchDebounce = React.useCallback(
-    debounce((value: string) => {
-      dispatch(setInputValue(value));
-    }, 500),
-    [],
+    (value: string) =>
+      debounce((value: string) => {
+        dispatch(setInputValue(value));
+      }, 500),
+    [dispatch],
   );
 
   const onSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {

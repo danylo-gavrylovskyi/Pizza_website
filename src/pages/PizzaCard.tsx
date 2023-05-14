@@ -16,7 +16,7 @@ export const PizzaCard: React.FC = () => {
 
   React.useEffect(() => {
     dispatch(fetchPizza(Number(id)));
-  }, []);
+  }, [dispatch, id]);
 
   const [activeTypeIndex, setTypeIndex] = React.useState(0);
   const [activeSizeIndex, setSizeIndex] = React.useState(26);
