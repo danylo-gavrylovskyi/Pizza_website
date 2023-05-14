@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+//@ts-ignore
 import debounce from 'lodash.debounce';
 import { useDispatch } from 'react-redux';
 
@@ -7,19 +8,19 @@ import { setInputValue } from '../slices/filterSlice';
 
 import styles from '../scss/_header.module.scss';
 
-export function Header({ orderTotal, quantity }) {
+export const Header: React.FC<Record<string, number>> = ({ orderTotal, quantity }) => {
   const [searchValue, setSearchValue] = React.useState('');
 
   const dispatch = useDispatch();
 
   const searchDebounce = React.useCallback(
-    debounce((value) => {
+    debounce((value: string) => {
       dispatch(setInputValue(value));
     }, 500),
     [],
   );
 
-  const onSearchChange = (event) => {
+  const onSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
     searchDebounce(event.target.value);
   };
@@ -126,4 +127,4 @@ export function Header({ orderTotal, quantity }) {
       </div>
     </div>
   );
-}
+};

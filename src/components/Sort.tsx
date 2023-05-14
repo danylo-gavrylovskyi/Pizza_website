@@ -2,10 +2,11 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setCriteriaIndex, setCriteriaName } from '../slices/filterSlice';
+import { RootState } from '../store';
 
 import styles from '../scss/_sort.module.scss';
 
-export function Sort() {
+export const Sort: React.FC = () => {
   const criterias = [
     'popularity (DESC)',
     'popularity (ASC)',
@@ -17,7 +18,7 @@ export function Sort() {
 
   const backendCriterias = ['rating', 'rating', 'price', 'price', 'title', 'title'];
 
-  const choosenCriteriaIndex = useSelector((state) => state.filter.sortCriteriaIndex);
+  const choosenCriteriaIndex = useSelector((state: RootState) => state.filter.sortCriteriaIndex);
   const dispatch = useDispatch();
 
   const [isSortOpen, setSort] = React.useState(false);
@@ -52,4 +53,4 @@ export function Sort() {
       </div>
     </div>
   );
-}
+};

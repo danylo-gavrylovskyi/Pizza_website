@@ -1,10 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { Item } from '../@types/generalTypes';
+import { WritableDraft } from 'immer/dist/types/types-external';
 
-const initialState = {
+type cartSliceState = {
+  cartItems: Item[];
+};
+
+const initialState: cartSliceState = {
   cartItems: [],
 };
 
-const checkForItem = (state, action) => {
+const checkForItem = (state: WritableDraft<cartSliceState>, action: PayloadAction<Item>) => {
   return state.cartItems.find(
     (item) =>
       item.id === action.payload.id &&
@@ -13,7 +19,7 @@ const checkForItem = (state, action) => {
   );
 };
 
-const filtrationItems = (state, action) => {
+const filtrationItems = (state: WritableDraft<cartSliceState>, action: PayloadAction<Item>) => {
   return state.cartItems.filter((item) => item.props !== action.payload.props);
 };
 
@@ -21,7 +27,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart(state, action) {
+    addToCart(state, action: PayloadAction<Item>) {
       const findedItem = checkForItem(state, action);
       findedItem ? findedItem.count++ : state.cartItems.push({ ...action.payload, count: 1 });
     },
@@ -32,9 +38,11 @@ const cartSlice = createSlice({
 
     removeOneUnit(state, action) {
       const findedItem = checkForItem(state, action);
-      findedItem.count <= 1
-        ? (state.cartItems = filtrationItems(state, action))
-        : findedItem.count--;
+      if (findedItem) {
+        findedItem.count <= 1
+          ? (state.cartItems = filtrationItems(state, action))
+          : findedItem.count--;
+      }
     },
 
     clearCart(state) {
@@ -43,5 +51,5 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, cartItems, removeOneUnit, clearCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, removeOneUnit, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;

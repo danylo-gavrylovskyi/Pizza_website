@@ -2,13 +2,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { addToCart, removeFromCart, removeOneUnit, clearCart } from '../slices/cartSlice';
+import { RootState } from '../store';
+import { Item } from '../@types/generalTypes';
 
 import { EmptyCart } from '../pages/EmptyCart';
 
 import styles from '../scss/_cart.module.scss';
 
-export function Cart({ orderTotal, quantity }) {
-  const { cartItems } = useSelector((state) => state.cart);
+export const Cart: React.FC<Record<string, number>> = ({ orderTotal, quantity }) => {
+  const { cartItems } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
 
   if (cartItems.length === 0) {
@@ -92,7 +94,7 @@ export function Cart({ orderTotal, quantity }) {
       </header>
 
       <main>
-        {cartItems.map((item) => (
+        {cartItems.map((item: Item) => (
           <section key={`${item.title + item.activeTypeIndex + item.activeSizeIndex}`}>
             <div className={styles.item}>
               <img alt={item.title} src={item.imageUrl}></img>
@@ -188,4 +190,4 @@ export function Cart({ orderTotal, quantity }) {
       </main>
     </div>
   );
-}
+};

@@ -3,23 +3,41 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { addToCart } from '../slices/cartSlice';
+import { Item } from '../@types/generalTypes';
+import { RootState } from '../store';
 
 import styles from '../scss/_pizzablock.module.scss';
 
-export function PizzaBlock({ title, imageUrl, price, types, sizes, item }) {
+type PizzaBlockState = {
+  title: string;
+  imageUrl: string;
+  price: number;
+  types: number[];
+  sizes: number[];
+  item: Item;
+};
+
+export const PizzaBlock: React.FC<PizzaBlockState> = ({
+  title,
+  imageUrl,
+  price,
+  types,
+  sizes,
+  item,
+}) => {
   const dispatch = useDispatch();
-  const allTypes = useSelector((state) => state.filter.types);
-  const allSizes = useSelector((state) => state.filter.sizes);
+  const allTypes = useSelector((state: RootState) => state.filter.types);
+  const allSizes = useSelector((state: RootState) => state.filter.sizes);
 
   const [activeTypeIndex, setTypeIndex] = React.useState(0);
   const [activeSizeIndex, setSizeIndex] = React.useState(26);
-  const setActiveTypeIndex = (index) => {
+  const setActiveTypeIndex = (index: number) => {
     if (types.includes(index)) {
       setTypeIndex(index);
     }
   };
 
-  const setActiveSizeIndex = (index) => {
+  const setActiveSizeIndex = (index: number) => {
     if (sizes.includes(index)) {
       setSizeIndex(index);
     }
@@ -85,4 +103,4 @@ export function PizzaBlock({ title, imageUrl, price, types, sizes, item }) {
       </div>
     </section>
   );
-}
+};

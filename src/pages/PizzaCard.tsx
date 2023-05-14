@@ -1,31 +1,32 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { fetchPizza } from '../slices/pizzaCardSlice';
 import { addToCart } from '../slices/cartSlice';
+import { RootState, useAppDispatch } from '../store';
 
 import styles from '../scss/pizzaCard.module.scss';
 
-export function PizzaCard() {
-  const dispatch = useDispatch();
+export const PizzaCard: React.FC = () => {
+  const dispatch = useAppDispatch();
   const { id } = useParams();
-  let { item, status } = useSelector((state) => state.pizzaCard);
-  const { types, sizes } = useSelector((state) => state.filter);
+  let { item, status } = useSelector((state: RootState) => state.pizzaCard);
+  const { types, sizes } = useSelector((state: RootState) => state.filter);
 
   React.useEffect(() => {
-    dispatch(fetchPizza(id));
+    dispatch(fetchPizza(Number(id)));
   }, []);
 
   const [activeTypeIndex, setTypeIndex] = React.useState(0);
   const [activeSizeIndex, setSizeIndex] = React.useState(26);
-  const setActiveTypeIndex = (index) => {
+  const setActiveTypeIndex = (index: number) => {
     if (status === 'success' && item.types.includes(index)) {
       setTypeIndex(index);
     }
   };
 
-  const setActiveSizeIndex = (index) => {
+  const setActiveSizeIndex = (index: number) => {
     if (status === 'success' && item.sizes.includes(index)) {
       setSizeIndex(index);
     }
@@ -52,7 +53,7 @@ export function PizzaCard() {
           <h1>{item.title}</h1>
           <div className={styles.parameters}>
             <section className={styles.upperBtns}>
-              {types.map((type, index) => (
+              {types.map((type: string, index: number) => (
                 <span
                   key={type}
                   onClick={() => setActiveTypeIndex(index)}
@@ -64,7 +65,7 @@ export function PizzaCard() {
               ))}
             </section>
             <section className={styles.footerBtns}>
-              {sizes.map((size) => (
+              {sizes.map((size: number) => (
                 <span
                   key={size}
                   onClick={() => setActiveSizeIndex(size)}
@@ -106,4 +107,5 @@ export function PizzaCard() {
       </div>
     );
   }
-}
+  return <>Error</>;
+};

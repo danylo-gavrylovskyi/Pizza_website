@@ -1,13 +1,22 @@
 import styles from '../scss/_pagination.module.scss';
 
-export function Pagination({
+type PaginationArgs = {
+  itemsCount: number;
+  itemsPerPage: number;
+  paginate: (index: number) => void;
+  currentPage: number;
+  previousPage: () => void;
+  nextPage: () => void;
+};
+
+export const Pagination: React.FC<PaginationArgs> = ({
   itemsCount,
   itemsPerPage,
   paginate,
   currentPage,
   previousPage,
   nextPage,
-}) {
+}) => {
   const pagesCount = [];
   for (let index = 1; index < Math.ceil(itemsCount / itemsPerPage) + 1; index++) {
     pagesCount.push(index);
@@ -41,4 +50,4 @@ export function Pagination({
       </button>
     </nav>
   );
-}
+};

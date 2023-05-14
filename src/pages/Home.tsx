@@ -7,10 +7,19 @@ import { Pagination } from '../components/Pagination';
 import { Categories } from '../components/Categories';
 import { Sort } from '../components/Sort';
 
+import { Item } from '../@types/generalTypes';
+
 import styles from '../scss/_home.module.scss';
 
-export function Home({ findedItems, categories }) {
+type HomeProps = {
+  findedItems: Item[];
+  categories: string[];
+};
+
+export const Home: React.FC<HomeProps> = ({ findedItems, categories }) => {
+  //@ts-ignore
   const activeCategoryIndex = useSelector((state) => state.filter.activeCategoryIndex);
+  //@ts-ignore
   const status = useSelector((state) => state.businessLogic.status);
 
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -21,7 +30,7 @@ export function Home({ findedItems, categories }) {
   const lastPageNum = Math.ceil(findedItems.length / itemsPerPage);
   const currentPageItems = findedItems.slice(firstItemOnPageInd, lastItemOnPageInd);
 
-  const paginate = (pageIndex) => {
+  const paginate = (pageIndex: number) => {
     setCurrentPage(pageIndex);
   };
   const previousPage = () => {
@@ -70,4 +79,4 @@ export function Home({ findedItems, categories }) {
         nextPage={nextPage}></Pagination>
     </>
   );
-}
+};

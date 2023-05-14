@@ -1,8 +1,9 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from '../scss/_emptyCart.module.scss';
 
-export function EmptyCart() {
+export const EmptyCart: React.FC = () => {
   return (
     <div className={styles.container}>
       <p className={styles.mainText}>Cart is empty 😕</p>
@@ -156,4 +157,4 @@ export function EmptyCart() {
       </Link>
     </div>
   );
-}
+};
