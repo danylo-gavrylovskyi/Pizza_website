@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-//@ts-ignore
 import debounce from 'lodash.debounce';
 import { useDispatch } from 'react-redux';
 
@@ -13,8 +12,8 @@ export const Header: React.FC<Record<string, number>> = ({ orderTotal, quantity 
 
   const dispatch = useDispatch();
 
-  const searchDebounce = React.useCallback(
-    (value: string) =>
+  const searchDebounce = React.useMemo(
+    () =>
       debounce((value: string) => {
         dispatch(setInputValue(value));
       }, 500),
