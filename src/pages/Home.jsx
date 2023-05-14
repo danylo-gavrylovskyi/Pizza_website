@@ -1,7 +1,6 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { PizzaBlock } from '../components/PizzaBlock';
 import { Pagination } from '../components/Pagination';

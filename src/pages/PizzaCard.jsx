@@ -11,6 +11,7 @@ export function PizzaCard() {
   const dispatch = useDispatch();
   const { id } = useParams();
   let { item, status } = useSelector((state) => state.pizzaCard);
+  const { types, sizes } = useSelector((state) => state.filter);
 
   React.useEffect(() => {
     dispatch(fetchPizza(id));
@@ -51,43 +52,28 @@ export function PizzaCard() {
           <h1>{item.title}</h1>
           <div className={styles.parameters}>
             <section className={styles.upperBtns}>
-              <span
-                onClick={() => setActiveTypeIndex(0)}
-                className={`${item.types.includes(0) ? '' : styles.unavailable} ${
-                  activeTypeIndex === 0 ? styles.active : ''
-                }`}>
-                thin
-              </span>
-              <span
-                onClick={() => setActiveTypeIndex(1)}
-                className={`${item.types.includes(1) ? '' : styles.unavailable} ${
-                  activeTypeIndex === 1 ? styles.active : ''
-                }`}>
-                traditional
-              </span>
+              {types.map((type, index) => (
+                <span
+                  key={type}
+                  onClick={() => setActiveTypeIndex(index)}
+                  className={`${item.types.includes(index) ? '' : styles.unavailable} ${
+                    activeTypeIndex === index ? styles.active : ''
+                  }`}>
+                  {type}
+                </span>
+              ))}
             </section>
             <section className={styles.footerBtns}>
-              <span
-                onClick={() => setActiveSizeIndex(26)}
-                className={`${item.sizes.includes(26) ? '' : styles.unavailable} ${
-                  activeSizeIndex === 26 ? styles.active : ''
-                }`}>
-                26 cm.
-              </span>
-              <span
-                onClick={() => setActiveSizeIndex(30)}
-                className={`${item.sizes.includes(30) ? '' : styles.unavailable} ${
-                  activeSizeIndex === 30 ? styles.active : ''
-                }`}>
-                30 cm.
-              </span>
-              <span
-                onClick={() => setActiveSizeIndex(40)}
-                className={`${item.sizes.includes(40) ? '' : styles.unavailable} ${
-                  activeSizeIndex === 40 ? styles.active : ''
-                }`}>
-                40 cm.
-              </span>
+              {sizes.map((size) => (
+                <span
+                  key={size}
+                  onClick={() => setActiveSizeIndex(size)}
+                  className={`${item.sizes.includes(size) ? '' : styles.unavailable} ${
+                    activeSizeIndex === size ? styles.active : ''
+                  }`}>
+                  {size} cm.
+                </span>
+              ))}
             </section>
           </div>
 

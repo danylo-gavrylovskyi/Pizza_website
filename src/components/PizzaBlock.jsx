@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { addToCart } from '../slices/cartSlice';
@@ -8,6 +8,8 @@ import styles from '../scss/_pizzablock.module.scss';
 
 export function PizzaBlock({ title, imageUrl, price, types, sizes, item }) {
   const dispatch = useDispatch();
+  const allTypes = useSelector((state) => state.filter.types);
+  const allSizes = useSelector((state) => state.filter.sizes);
 
   const [activeTypeIndex, setTypeIndex] = React.useState(0);
   const [activeSizeIndex, setSizeIndex] = React.useState(26);
@@ -39,43 +41,28 @@ export function PizzaBlock({ title, imageUrl, price, types, sizes, item }) {
 
       <div className={styles.parameters}>
         <section className={styles.upperBtns}>
-          <span
-            onClick={() => setActiveTypeIndex(0)}
-            className={`${types.includes(0) ? '' : styles.unavailable} ${
-              activeTypeIndex === 0 ? styles.active : ''
-            }`}>
-            thin
-          </span>
-          <span
-            onClick={() => setActiveTypeIndex(1)}
-            className={`${types.includes(1) ? '' : styles.unavailable} ${
-              activeTypeIndex === 1 ? styles.active : ''
-            }`}>
-            traditional
-          </span>
+          {allTypes.map((type, index) => (
+            <span
+              key={type}
+              onClick={() => setActiveTypeIndex(index)}
+              className={`${types.includes(index) ? '' : styles.unavailable} ${
+                activeTypeIndex === index ? styles.active : ''
+              }`}>
+              {type}
+            </span>
+          ))}
         </section>
         <section className={styles.footerBtns}>
-          <span
-            onClick={() => setActiveSizeIndex(26)}
-            className={`${sizes.includes(26) ? '' : styles.unavailable} ${
-              activeSizeIndex === 26 ? styles.active : ''
-            }`}>
-            26 cm.
-          </span>
-          <span
-            onClick={() => setActiveSizeIndex(30)}
-            className={`${sizes.includes(30) ? '' : styles.unavailable} ${
-              activeSizeIndex === 30 ? styles.active : ''
-            }`}>
-            30 cm.
-          </span>
-          <span
-            onClick={() => setActiveSizeIndex(40)}
-            className={`${sizes.includes(40) ? '' : styles.unavailable} ${
-              activeSizeIndex === 40 ? styles.active : ''
-            }`}>
-            40 cm.
-          </span>
+          {allSizes.map((size) => (
+            <span
+              key={size}
+              onClick={() => setActiveSizeIndex(size)}
+              className={`${sizes.includes(size) ? '' : styles.unavailable} ${
+                activeSizeIndex === size ? styles.active : ''
+              }`}>
+              {size} cm.
+            </span>
+          ))}
         </section>
       </div>
 

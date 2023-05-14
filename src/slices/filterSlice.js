@@ -5,6 +5,8 @@ const initialState = {
   sortCriteriaIndex: 0,
   sortCriteriaName: 'rating',
   inputValue: '',
+  types: ['thin', 'traditional'],
+  sizes: [26, 30, 40],
 };
 
 const filterSlice = createSlice({
@@ -33,6 +35,8 @@ export const {
   setCriteriaName,
   setInputValue,
   inputValue,
+  types,
+  sizes,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;
