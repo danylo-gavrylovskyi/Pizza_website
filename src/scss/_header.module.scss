@@ -98,6 +98,16 @@
         margin-left: 10%;
       }
     }
+    @media (max-width: 1120px) {
+      & {
+        margin-left: 7%;
+      }
+    }
+    @media (max-width: 1070px) {
+      & {
+        margin-left: 4%;
+      }
+    }
 
     button {
       background-color: #fe5f1e;

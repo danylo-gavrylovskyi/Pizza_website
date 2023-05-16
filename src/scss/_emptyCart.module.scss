@@ -27,9 +27,15 @@
     margin: 6% 0;
   }
 
+  .routerLink {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
   .backBtn {
-    width: 15vw;
-    height: 8vh;
+    width: 25%;
+    height: 50px;
     border: 1px solid #282828;
     background-color: #282828;
     color: white;

@@ -7,6 +7,10 @@
 .mainGrid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  @media (max-width: 1240px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 20%;
+  }
   row-gap: 6%;
   margin-left: 4%;
   margin-right: 4%;
