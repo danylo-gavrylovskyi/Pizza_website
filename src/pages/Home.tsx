@@ -7,6 +7,8 @@ import { Pagination } from '../components/Pagination';
 import { Categories } from '../components/Categories';
 import { Sort } from '../components/Sort';
 
+import { RootState } from '../store';
+
 import { Item } from '../@types/generalTypes';
 
 import styles from '../scss/_home.module.scss';
@@ -17,10 +19,8 @@ type HomeProps = {
 };
 
 export const Home: React.FC<HomeProps> = ({ findedItems, categories }) => {
-  //@ts-ignore
-  const activeCategoryIndex = useSelector((state) => state.filter.activeCategoryIndex);
-  //@ts-ignore
-  const status = useSelector((state) => state.businessLogic.status);
+  const activeCategoryIndex = useSelector((state: RootState) => state.filter.activeCategoryIndex);
+  const status = useSelector((state: RootState) => state.businessLogic.status);
 
   const [currentPage, setCurrentPage] = React.useState(1);
   const itemsPerPage = 8;

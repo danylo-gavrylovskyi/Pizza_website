@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -7,11 +8,24 @@ import { Item } from '../@types/generalTypes';
 
 import { EmptyCart } from '../pages/EmptyCart';
 
+import { orderTotalCalc, quantityCalc } from '../utils/cartCalc';
+
 import styles from '../scss/_cart.module.scss';
 
-export const Cart: React.FC<Record<string, number>> = ({ orderTotal, quantity }) => {
+export const Cart: React.FC<Record<string, number>> = () => {
   const { cartItems } = useSelector((state: RootState) => state.cart);
+  const orderTotal = orderTotalCalc(cartItems);
+  const quantity = quantityCalc(cartItems);
   const dispatch = useDispatch();
+
+  const isMounted = React.useRef(false);
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(cartItems);
+      localStorage.setItem('cart', json);
+    }
+    isMounted.current = true;
+  }, [cartItems]);
 
   if (cartItems.length === 0) {
     return <EmptyCart></EmptyCart>;

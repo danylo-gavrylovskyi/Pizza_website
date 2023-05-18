@@ -1,13 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import debounce from 'lodash.debounce';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { setInputValue } from '../slices/filterSlice';
+import { RootState } from '../store';
+
+import { orderTotalCalc, quantityCalc } from '../utils/cartCalc';
 
 import styles from '../scss/_header.module.scss';
 
-export const Header: React.FC<Record<string, number>> = ({ orderTotal, quantity }) => {
+export const Header: React.FC<Record<string, number>> = () => {
   const [searchValue, setSearchValue] = React.useState('');
 
   const dispatch = useDispatch();
@@ -24,6 +27,10 @@ export const Header: React.FC<Record<string, number>> = ({ orderTotal, quantity 
     setSearchValue(event.target.value);
     searchDebounce(event.target.value);
   };
+
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  const orderTotal = orderTotalCalc(cartItems);
+  const quantity = quantityCalc(cartItems);
 
   return (
     <div className={styles.container}>

@@ -1,13 +1,16 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Item } from '../@types/generalTypes';
 import { WritableDraft } from 'immer/dist/types/types-external';
+
+import { Item } from '../@types/generalTypes';
+
+import { getCardFromLS } from '../utils/getCartFromLS';
 
 type cartSliceState = {
   cartItems: Item[];
 };
 
 const initialState: cartSliceState = {
-  cartItems: [],
+  cartItems: getCardFromLS(),
 };
 
 const checkForItem = (state: WritableDraft<cartSliceState>, action: PayloadAction<Item>) => {
